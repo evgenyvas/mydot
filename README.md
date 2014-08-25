@@ -1,0 +1,4 @@
+mydot
+=====
+
+my vim configuraion
