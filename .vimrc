@@ -18,7 +18,15 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
-Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
+"Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
+Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
+Plugin 'jlanzarotta/bufexplorer'
+
+Plugin 'scrooloose/nerdcommenter'       " easy comment
+
+Plugin 'majutsushi/tagbar'
+"----------- autocomplete ftplugins --------------
+Plugin 'shawncplus/phpcomplete.vim'
 
 call vundle#end()            		" required
 
@@ -29,6 +37,25 @@ filetype plugin indent on
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+if has("gui")
+
+  " set the gui options to:
+  "   g: grey inactive menu items
+  "   m: display menu bar
+  "   r: display scrollbar on right side of window
+  "   b: display scrollbar at bottom of window
+
+  "   t: enable tearoff menus on Win32
+  "   T: enable toolbar on Win32
+    set go-=T
+    set go-=L
+    "set guifont=Courier
+
+endif
+
+"au VimEnter * if line('$') > &lines | set go+=r | else | set go-=r | endif
+"au VimResized * if line('$') > &lines | set go+=r | else | set go-=r | endif
+
 "set nobackup		" keep a backup file (restore to previous version)
 "set noundofile		" keep an undo file (undo changes after closing)
 "set history=50		" keep 50 lines of command line history
@@ -38,6 +65,8 @@ set incsearch		" do incremental searching
 set mouse=a
 syntax on
 set number
+" Disable all blinking:
+set guicursor+=a:blinkon0
 "set hlsearch
 set switchbuf+=usetab,newtab
 set laststatus=2        " show status bar always
@@ -50,7 +79,7 @@ set expandtab
 set autoindent
 "------------------------------------
 set background=dark
-colorscheme monokai
+colorscheme monokai-noit
 
 " Настраиваем переключение раскладок клавиатуры по <C-F>
 set keymap=russian-jcukenwin
@@ -96,13 +125,41 @@ set imsearch=0
 " кириллица для спеллчекера 
 "setlocal spell spelllang=ru_yo,en_us
 
+"Use TAB to complete when typing words, else inserts TABs as usual.
+"Uses dictionary and source files to find matching words to complete.
+
+"autocomplete
+"See help completion for source,
+"Note: usual completion is on <C-n> but more trouble to press all the time.
+"Never type the same word twice and maybe learn a new spellings!
+"Use the Linux dictionary when spelling is in doubt.
+"Window users can copy the file to their machine.
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+:set dictionary="/usr/dict/words"
+
 "========================================
 " NERDTree
 "========================================
 " показать NERDTree на F3
-"map <F3> :NERDTreeToggle<CR>
-map <F3> :NERDTreeTabsToggle<CR>
+map <F3> :NERDTreeToggle<CR>
+
+"map <F3> :NERDTreeTabsToggle<CR>
 " игнорируемые файлы с расширениями
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 " открывать в новом табе по <ENTER>
 let NERDTreeMapOpenInTab='<ENTER>'
+
+
+"========================================
+" Tagbar
+"========================================
+map <F4> :TagbarToggle<CR>
+"let g:tagbar_left = 1
+
