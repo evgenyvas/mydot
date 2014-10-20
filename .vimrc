@@ -20,7 +20,11 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
 Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
-Plugin 'jlanzarotta/bufexplorer'
+Plugin 'jlanzarotta/bufexplorer'        " easy buffers switch
+
+Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
+
+Plugin 'vimplugin/project.vim'          " projects support
 
 Plugin 'scrooloose/nerdcommenter'       " easy comment
 
@@ -77,45 +81,53 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set autoindent
+" ----- after change indentation for many lines visual select is not disappear
+vnoremap > >gv
+vnoremap < <gv
 "------------------------------------
 set background=dark
 colorscheme monokai-noit
-
+" названия табов - только имена файлов
+set guitablabel=%t
 " Настраиваем переключение раскладок клавиатуры по <C-F>
 set keymap=russian-jcukenwin
 
 " Раскладка по умолчанию - английская
 set iminsert=0
 set imsearch=0
+"highlight lCursor guifg=NONE guibg=Cyan
+"Переключение раскладок и индикация выбранной
+" в данный момент раскладки.
+" -->
+    " Переключение раскладок будет производиться по <C-F>
+    "
+    " При английской раскладке статусная строка текущего окна будет синего
+    " цвета, а при русской - зеленого.
 
-  "Переключение раскладок и индикация выбранной
-    " в данный момент раскладки.
-    " -->
-        " Переключение раскладок будет производиться по <C-F>
-        "
-        " При английской раскладке статусная строка текущего окна будет синего
-        " цвета, а при русской - зеленого.
+    "function MyKeyMapHighlight()
+        "if &iminsert == 0
+            "hi StatusLine ctermfg=DarkBlue guifg=DarkBlue
+        "else
+            "hi StatusLine ctermfg=DarkGreen guifg=DarkGreen
+        "endif
+    "endfunction
 
-        function MyKeyMapHighlight()
-            if &iminsert == 0
-                hi StatusLine ctermfg=DarkBlue guifg=DarkBlue
-            else
-                hi StatusLine ctermfg=DarkGreen guifg=DarkGreen
-            endif
-        endfunction
+    " Вызываем функцию, чтобы она установила цвета при запуске Vim'a
+    "call MyKeyMapHighlight()
 
-        " Вызываем функцию, чтобы она установила цвета при запуске Vim'a
-        call MyKeyMapHighlight()
+    " При изменении активного окна будет выполняться обновление
+    " индикации текущей раскладки
+    "au WinEnter * :call MyKeyMapHighlight()
 
-        " При изменении активного окна будет выполняться обновление
-        " индикации текущей раскладки
-        au WinEnter * :call MyKeyMapHighlight()
-
-        cmap <silent> <C-F> <C-^>
-        imap <silent> <C-F> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
-        nmap <silent> <C-F> a<C-^><Esc>:call MyKeyMapHighlight()<CR>
-        vmap <silent> <C-F> <Esc>a<C-^><Esc>:call MyKeyMapHighlight()<CR>gv
-    " <--
+    cmap <silent> <C-F> <C-^>
+    imap <silent> <C-F> <C-^>
+    nmap <silent> <C-F> a<C-^>
+    vmap <silent> <C-F> <Esc>a<C-^>gv
+    
+    "imap <silent> <C-F> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
+    "nmap <silent> <C-F> a<C-^><Esc>:call MyKeyMapHighlight()<CR>
+    "vmap <silent> <C-F> <Esc>a<C-^><Esc>:call MyKeyMapHighlight()<CR>gv
+" <--
 
 " сохранить файл
 :nmap <c-s> :w<CR>
@@ -156,10 +168,18 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o
 " открывать в новом табе по <ENTER>
 let NERDTreeMapOpenInTab='<ENTER>'
 
-
 "========================================
 " Tagbar
 "========================================
 map <F4> :TagbarToggle<CR>
 "let g:tagbar_left = 1
 
+
+"========================================
+" Airline
+"========================================
+set laststatus=2
+let g:airline_theme='badwolf'
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
