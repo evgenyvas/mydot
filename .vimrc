@@ -156,6 +156,12 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+set backupdir=./.backup,/tmp
+set directory=./.backup,/tmp
+
 "========================================
 " NERDTree
 "========================================
