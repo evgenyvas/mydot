@@ -162,6 +162,10 @@ autocmd GUIEnter * set visualbell t_vb=
 set backupdir=./.backup,/tmp
 set directory=./.backup,/tmp
 
+" stamp a yanked text
+nnoremap S diw"0P
+vnoremap S "_d"0P
+
 "========================================
 " NERDTree
 "========================================
