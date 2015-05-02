@@ -20,7 +20,7 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
 Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
-Plugin 'jlanzarotta/bufexplorer'        " easy buffers switch
+Plugin 'jeetsukumaran/vim-buffergator'  " easy buffers switch
 
 Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
 
@@ -31,6 +31,8 @@ Plugin 'scrooloose/nerdcommenter'       " easy comment
 Plugin 'majutsushi/tagbar'
 "----------- autocomplete ftplugins --------------
 Plugin 'shawncplus/phpcomplete.vim'
+
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            		" required
 
@@ -69,9 +71,18 @@ set incsearch		" do incremental searching
 set mouse=a
 syntax on
 set number
+
+set hidden     " undo works after changing buffer
+
 " Disable all blinking:
 set guicursor+=a:blinkon0
-"set hlsearch
+set hlsearch
+" on star highlight next found text
+nnoremap * *N
+" Press F8 to toggle highlighting on/off, and show current value.
+:noremap <F8> :set hlsearch! hlsearch?<CR>
+" в визуальном режиме по команде * подсвечивать выделение
+vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 set switchbuf+=usetab,newtab
 set laststatus=2        " show status bar always
 "------- indentation settings -------
@@ -89,6 +100,8 @@ set background=dark
 colorscheme monokai-noit
 " названия табов - только имена файлов
 set guitablabel=%t
+" for console
+set tabline=
 " Настраиваем переключение раскладок клавиатуры по <C-F>
 set keymap=russian-jcukenwin
 
@@ -162,9 +175,34 @@ autocmd GUIEnter * set visualbell t_vb=
 set backupdir=./.backup,/tmp
 set directory=./.backup,/tmp
 
-" stamp a yanked text
+" stamp a yanked text to S
 nnoremap S diw"0P
 vnoremap S "_d"0P
+
+" rearrange tabs by ctrl + shift + arrows
+function ShiftTab(direction)
+     let tab_number = tabpagenr() 
+     if a:direction == 0
+         if tab_number == 1
+             exe 'tabm' . tabpagenr('$')
+         else
+             exe 'tabm' . (tab_number - 2)
+         endif
+     else
+         if tab_number == tabpagenr('$')
+             exe 'tabm ' . 0
+         else
+             exe 'tabm ' . tab_number
+         endif
+     endif
+     return ''
+endfunction
+
+inoremap <silent> <C-S-Left>  <C-r>=ShiftTab(0)<CR>
+inoremap <silent> <C-S-Right>  <C-r>=ShiftTab(1)<CR>
+
+noremap <silent> <C-S-Left>  :call ShiftTab(0)<CR>
+noremap <silent> <C-S-Right> :call ShiftTab(1)<CR>
 
 "========================================
 " NERDTree
@@ -190,6 +228,27 @@ map <F4> :TagbarToggle<CR>
 "========================================
 set laststatus=2
 let g:airline_theme='badwolf'
-"let g:airline_powerline_fonts = 1
+" Enable the list of buffers
 "let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline_powerline_fonts = 1
+
+"========================================
+" ctrlP
+"========================================
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Use a leader instead of the actual named binding
+"nmap <leader>p :CtrlP<cr>
+
