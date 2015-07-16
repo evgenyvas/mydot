@@ -34,6 +34,8 @@ Plugin 'shawncplus/phpcomplete.vim'
 
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'rust-lang/rust.vim'
+
 call vundle#end()            		" required
 
 filetype on
@@ -203,6 +205,9 @@ inoremap <silent> <C-S-Right>  <C-r>=ShiftTab(1)<CR>
 
 noremap <silent> <C-S-Left>  :call ShiftTab(0)<CR>
 noremap <silent> <C-S-Right> :call ShiftTab(1)<CR>
+
+" search current file in all subdirectories
+map <F6> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 "========================================
 " NERDTree
