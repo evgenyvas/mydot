@@ -76,6 +76,7 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    alias ll='ls -la --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -112,6 +113,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon
+
+complete -cf sudo man
+
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+
 # append history entries..
 shopt -s histappend
 
@@ -119,8 +128,4 @@ shopt -s histappend
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new'
-alias ll='ls -la'
-
-#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
-stty -ixon
 

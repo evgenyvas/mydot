@@ -238,7 +238,7 @@ let g:airline_theme='badwolf'
 " Show just the filename
 "let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extensions#tabline#formatter = 'unique_tail'
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
 "========================================
 " ctrlP

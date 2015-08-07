@@ -168,10 +168,12 @@ popup_during_fullscreen smart
 
 #workspace_auto_back_and_forth yes
 
+assign [class="^Chromium$"] → 2:dev
+assign [class="^Skype$"] → 5:skype
+exec --no-startup-id 'claws-mail'
 exec --no-startup-id i3-msg 'workspace 1:main; exec /usr/bin/lxterminal'
-exec --no-startup-id i3-msg 'workspace 2:dev; exec /usr/bin/chromium'
+exec --no-startup-id 'chromium'
 exec --no-startup-id i3-msg 'workspace 3:www; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 4:media; exec /usr/local/bin/deadbeef'
-exec --no-startup-id i3-msg 'workspace 5:skype; exec /usr/bin/skype'
-
+exec --no-startup-id 'skype'
 
