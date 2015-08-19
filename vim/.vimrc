@@ -36,6 +36,10 @@ Plugin 'kien/ctrlp.vim'
 
 Plugin 'rust-lang/rust.vim'
 
+Plugin 'scrooloose/syntastic'        " syntax checker
+
+Plugin 'tpope/vim-fugitive'          " git wrapper
+
 call vundle#end()            		" required
 
 filetype on
@@ -256,4 +260,17 @@ let g:ctrlp_working_path_mode = 'r'
 
 " Use a leader instead of the actual named binding
 "nmap <leader>p :CtrlP<cr>
+
+
+"========================================
+" syntastic
+"========================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
