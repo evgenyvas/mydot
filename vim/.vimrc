@@ -29,16 +29,31 @@ Plugin 'vimplugin/project.vim'          " projects support
 Plugin 'scrooloose/nerdcommenter'       " easy comment
 
 Plugin 'majutsushi/tagbar'
+
+Plugin 'mileszs/ack.vim'           " search
 "----------- autocomplete ftplugins --------------
 Plugin 'shawncplus/phpcomplete.vim'
 
+Plugin 'Shougo/neocomplete'         " cache completion
+
 Plugin 'kien/ctrlp.vim'
 
-Plugin 'rust-lang/rust.vim'
+Plugin 'rust-lang/rust.vim'         " rust
+
+Plugin 'fatih/vim-go'               " golang
+
+"----------- other --------------
+Plugin 'Shougo/neosnippet'
+
+Plugin 'Shougo/neosnippet-snippets'
 
 Plugin 'scrooloose/syntastic'        " syntax checker
 
 Plugin 'tpope/vim-fugitive'          " git wrapper
+
+Plugin 'airblade/vim-gitgutter'      " show git changes
+
+Plugin 'jiangmiao/auto-pairs'        " auto close brackets
 
 call vundle#end()            		" required
 
@@ -273,4 +288,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+"========================================
+" ack
+"========================================
+" use silver searcher instead of ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
