@@ -36,6 +36,8 @@ Plugin 'shawncplus/phpcomplete.vim'
 
 Plugin 'Shougo/neocomplete'         " cache completion
 
+Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
+
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'rust-lang/rust.vim'         " rust
@@ -297,4 +299,19 @@ let g:syntastic_check_on_wq = 0
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" highlights the background in a subtle red for text over the 80 column limit 
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
+
+"========================================
+" neocomplete
+"========================================
+"let g:neocomplete#enable_at_startup = 1
+
+"========================================
+" YouCompleteMe
+"========================================
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
