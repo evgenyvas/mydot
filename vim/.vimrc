@@ -28,27 +28,21 @@ Plugin 'vimplugin/project.vim'          " projects support
 
 Plugin 'scrooloose/nerdcommenter'       " easy comment
 
-Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'              " list of methods, classes and variables
 
-Plugin 'mileszs/ack.vim'           " search
+Plugin 'mileszs/ack.vim'                " search
 "----------- autocomplete ftplugins --------------
 Plugin 'shawncplus/phpcomplete.vim'
 
-Plugin 'Shougo/neocomplete'         " cache completion
-
 Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
 
 Plugin 'rust-lang/rust.vim'         " rust
 
 Plugin 'fatih/vim-go'               " golang
 
 "----------- other --------------
-Plugin 'Shougo/neosnippet'
-
-Plugin 'Shougo/neosnippet-snippets'
-
 Plugin 'scrooloose/syntastic'        " syntax checker
 
 Plugin 'tpope/vim-fugitive'          " git wrapper
@@ -119,6 +113,9 @@ set autoindent
 vnoremap > >gv
 vnoremap < <gv
 "------------------------------------
+" highlights 80 column limit 
+set colorcolumn=80
+
 set background=dark
 colorscheme monokai-noit
 " названия табов - только имена файлов
@@ -299,16 +296,6 @@ let g:syntastic_check_on_wq = 0
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" highlights the background in a subtle red for text over the 80 column limit 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
-
-"========================================
-" neocomplete
-"========================================
-"let g:neocomplete#enable_at_startup = 1
 
 "========================================
 " YouCompleteMe
