@@ -19,12 +19,12 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
-Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
+"Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
 Plugin 'jeetsukumaran/vim-buffergator'  " easy buffers switch
 
 Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
 
-Plugin 'vimplugin/project.vim'          " projects support
+"Plugin 'vimplugin/project.vim'          " projects support
 
 Plugin 'scrooloose/nerdcommenter'       " easy comment
 
@@ -32,11 +32,15 @@ Plugin 'majutsushi/tagbar'              " list of methods, classes and variables
 
 Plugin 'mileszs/ack.vim'                " search
 "----------- autocomplete ftplugins --------------
-Plugin 'shawncplus/phpcomplete.vim'
+"Plugin 'shawncplus/phpcomplete.vim'
 
-Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
+"Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
 
 Plugin 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
+
+"Plugin 'SirVer/ultisnips'            " snippet engine
+
+"Plugin 'honza/vim-snippets'          " snippets
 
 Plugin 'rust-lang/rust.vim'         " rust
 
@@ -163,9 +167,9 @@ set imsearch=0
 " <--
 
 " сохранить файл
-:nmap <c-s> :w<CR>
-:imap <c-s> <Esc>:w<CR>a
-:imap <c-s> <Esc><c-s>
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+imap <c-s> <Esc><c-s>
 
 " кириллица для спеллчекера 
 "setlocal spell spelllang=ru_yo,en_us
@@ -186,8 +190,8 @@ function! Tab_Or_Complete()
     return "\<Tab>"
   endif
 endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+set dictionary="/usr/dict/words"
 
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
@@ -300,5 +304,12 @@ endif
 "========================================
 " YouCompleteMe
 "========================================
-let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"========================================
+" ultisnips
+"========================================
+"let g:UltiSnipsExpandTrigger="<alt>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
