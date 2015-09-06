@@ -132,3 +132,4 @@ alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmu
 export GOPATH=$HOME/dev/golang
 export PATH=$PATH:$GOPATH/bin
 
+TERM=xterm-256color
