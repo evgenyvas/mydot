@@ -6,11 +6,9 @@ endif
 "========================================
 " General Settings
 "========================================
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 filetype off            " required
+
+let loaded_matchit = 1  " temporary fix for jump on brackets
 
 "========================================
 " Vundle settings
