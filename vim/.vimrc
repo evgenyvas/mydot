@@ -22,7 +22,8 @@ Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
 Plugin 'jeetsukumaran/vim-buffergator'  " easy buffers switch
 
-Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline'              " Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline-themes'       " Lean & mean status/tabline for vim
 
 "Plugin 'vimplugin/project.vim'          " projects support
 
@@ -46,6 +47,8 @@ Plugin 'rust-lang/rust.vim'         " rust
 
 Plugin 'fatih/vim-go'               " golang
 
+Plugin 'zah/nim.vim'                " nim
+
 "----------- other --------------
 Plugin 'scrooloose/syntastic'        " syntax checker
 
@@ -53,7 +56,9 @@ Plugin 'tpope/vim-fugitive'          " git wrapper
 
 Plugin 'airblade/vim-gitgutter'      " show git changes
 
-Plugin 'jiangmiao/auto-pairs'        " auto close brackets
+Plugin 'vim-scripts/matchit.zip'      " extended %
+
+"Plugin 'jiangmiao/auto-pairs'        " auto close brackets
 
 call vundle#end()            		" required
 
@@ -124,6 +129,8 @@ set background=dark
 colorscheme monokai-noit
 " названия табов - только имена файлов
 set guitablabel=%t
+" always use X11 clipboard
+set clipboard=unnamedplus
 " for console
 set tabline=
 " Настраиваем переключение раскладок клавиатуры по <C-F>
@@ -312,4 +319,20 @@ endif
 "let g:UltiSnipsExpandTrigger="<alt>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+"========================================
+" nim
+"========================================
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Jump to tag
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i
 
