@@ -262,12 +262,14 @@ map <F4> :TagbarToggle<CR>
 "========================================
 set laststatus=2
 let g:airline_theme='badwolf'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 " Enable the list of buffers
 "let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 "let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 "========================================
 " ctrlP
