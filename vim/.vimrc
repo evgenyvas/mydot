@@ -125,6 +125,9 @@ vnoremap < <gv
 " highlights 80 column limit 
 set colorcolumn=80
 
+" Show “invisible” characters
+set list lcs=tab:▸\ ,trail:·,nbsp:_
+
 set background=dark
 colorscheme monokai-noit
 " названия табов - только имена файлов
