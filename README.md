@@ -16,5 +16,4 @@ To disable configuration (vim for example):
 - stow -D vim
 
 Install vim plugins:
-- git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-- in vim type: `:PluginInstall`&lt;enter&gt;
+- in vim type: `:PlugInstall`&lt;enter&gt;
