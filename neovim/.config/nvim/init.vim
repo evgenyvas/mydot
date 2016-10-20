@@ -1,79 +1,78 @@
-if has('nvim')
-    let s:editor_root=expand("~/.nvim")
-else
-    let s:editor_root=expand("~/.vim")
-endif
 "========================================
 " General Settings
 "========================================
-filetype off            " required
 
-let loaded_matchit = 1  " temporary fix for jump on brackets
+let s:editor_root=expand("~/.config/nvim")
 
 "========================================
-" Vundle settings
+" vim-plug settings
 "========================================
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
 
-" Setting up Vundle - the vim plugin bundler
-let vundle_installed=1
-let vundle_readme=s:editor_root . '/bundle/Vundle.vim/README.md'
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
+" Setting up vim-plug - the vim plugin bundler
+let vimplug_file = s:editor_root . '/autoload/plug.vim'
+if !filereadable(vimplug_file)
+    echo "Installing vim-plug..."
     echo ""
-    " silent execute "! mkdir -p ~/." . s:editor_path_name . "/bundle"
-    silent call mkdir(s:editor_root . '/bundle', "p")
-    silent execute "!git clone https://github.com/gmarik/Vundle.vim.git " . s:editor_root . "/bundle/Vundle.vim"
-    let vundle_installed=0
+    silent execute "!curl -fLo " . vimplug_file . " --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    let s:vimplug_installed=1
 endif
-let &rtp = &rtp . ',' . s:editor_root . '/bundle/Vundle.vim'
-call vundle#rc(s:editor_root . '/bundle')
-
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
+call plug#begin(s:editor_root . '/plugged')
 
 "---------=== Code/project navigation ===-------------
-Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
+Plug 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
 "Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
-Plugin 'jeetsukumaran/vim-buffergator'  " easy buffers switch
+Plug 'jeetsukumaran/vim-buffergator'  " easy buffers switch
 
-Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline'              " Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'       " Lean & mean status/tabline for vim
 
 "Plugin 'vimplugin/project.vim'          " projects support
 
-Plugin 'scrooloose/nerdcommenter'       " easy comment
+Plug 'scrooloose/nerdcommenter'       " easy comment
 
-Plugin 'majutsushi/tagbar'              " list of methods, classes and variables
+Plug 'majutsushi/tagbar'              " list of methods, classes and variables
 
-Plugin 'mileszs/ack.vim'                " search
+Plug 'mileszs/ack.vim'                " search
 "----------- autocomplete ftplugins --------------
 "Plugin 'shawncplus/phpcomplete.vim'
 
 "Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
 
-Plugin 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
+Plug 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
 
 "Plugin 'SirVer/ultisnips'            " snippet engine
 
 "Plugin 'honza/vim-snippets'          " snippets
 
-Plugin 'rust-lang/rust.vim'         " rust
+"Plug 'rust-lang/rust.vim'         " rust
 
-Plugin 'fatih/vim-go'               " golang
+Plug 'fatih/vim-go'               " golang
+
+"Plugin 'zah/nim.vim'                " nim
 
 "----------- other --------------
-Plugin 'scrooloose/syntastic'        " syntax checker
+Plug 'scrooloose/syntastic'        " syntax checker
 
-Plugin 'tpope/vim-fugitive'          " git wrapper
+Plug 'tpope/vim-fugitive'          " git wrapper
 
-Plugin 'airblade/vim-gitgutter'      " show git changes
+Plug 'airblade/vim-gitgutter'      " show git changes
 
-Plugin 'jiangmiao/auto-pairs'        " auto close brackets
+"Plugin 'vim-scripts/matchit.zip'      " extended %
 
-call vundle#end()            		" required
+Plug 'jiangmiao/auto-pairs'        " auto close brackets
+
+" Add plugins to &runtimepath
+call plug#end()
+
+if exists('s:vimplug_installed') && s:vimplug_installed
+    unlet s:vimplug_installed
+    PlugInstall
+    quit
+endif
+
+let loaded_matchit = 1  " temporary fix for jump on brackets
 
 filetype on
 filetype plugin on
@@ -81,22 +80,6 @@ filetype plugin indent on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-if has("gui")
-
-  " set the gui options to:
-  "   g: grey inactive menu items
-  "   m: display menu bar
-  "   r: display scrollbar on right side of window
-  "   b: display scrollbar at bottom of window
-
-  "   t: enable tearoff menus on Win32
-  "   T: enable toolbar on Win32
-    set go-=T
-    set go-=L
-    "set guifont=Courier
-
-endif
 
 "au VimEnter * if line('$') > &lines | set go+=r | else | set go-=r | endif
 "au VimResized * if line('$') > &lines | set go+=r | else | set go-=r | endif
@@ -138,6 +121,9 @@ vnoremap < <gv
 " highlights 80 column limit 
 set colorcolumn=80
 
+" Show “invisible” characters
+set list lcs=tab:▸\ ,trail:·,nbsp:_
+
 set background=dark
 colorscheme monokai-noit
 " названия табов - только имена файлов
@@ -145,7 +131,7 @@ set guitablabel=%t
 " always use X11 clipboard
 set clipboard+=unnamedplus
 " for console
-"set tabline=
+set tabline=
 " Настраиваем переключение раскладок клавиатуры по <C-F>
 set keymap=russian-jcukenwin
 
@@ -275,12 +261,14 @@ map <F4> :TagbarToggle<CR>
 "========================================
 set laststatus=2
 let g:airline_theme='badwolf'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 " Enable the list of buffers
 "let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 "let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 "========================================
 " ctrlP

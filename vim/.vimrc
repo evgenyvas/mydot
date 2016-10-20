@@ -2,65 +2,75 @@
 " General Settings
 "========================================
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-filetype off            " required
+let s:editor_root=expand("~/.vim")
 
 "========================================
-" Vundle settings
+" vim-plug settings
 "========================================
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
+" Setting up vim-plug - the vim plugin bundler
+let vimplug_file = s:editor_root . '/autoload/plug.vim'
+if !filereadable(vimplug_file)
+    echo "Installing vim-plug..."
+    echo ""
+    silent execute "!curl -fLo " . vimplug_file . " --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    let s:vimplug_installed=1
+endif
+call plug#begin('~/.vim/plugged')
 
 "---------=== Code/project navigation ===-------------
-Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
+Plug 'scrooloose/nerdtree' 	    	" Project and file navigation
 "Plugin 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
 "Plugin 'Shougo/unite.vim'               " Navigation between buffers and files
-Plugin 'jeetsukumaran/vim-buffergator'  " easy buffers switch
+Plug 'jeetsukumaran/vim-buffergator'  " easy buffers switch
 
-Plugin 'vim-airline/vim-airline'              " Lean & mean status/tabline for vim
-Plugin 'vim-airline/vim-airline-themes'       " Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline'              " Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'       " Lean & mean status/tabline for vim
 
 "Plugin 'vimplugin/project.vim'          " projects support
 
-Plugin 'scrooloose/nerdcommenter'       " easy comment
+Plug 'scrooloose/nerdcommenter'       " easy comment
 
-Plugin 'majutsushi/tagbar'              " list of methods, classes and variables
+Plug 'majutsushi/tagbar'              " list of methods, classes and variables
 
-Plugin 'mileszs/ack.vim'                " search
+Plug 'mileszs/ack.vim'                " search
 "----------- autocomplete ftplugins --------------
 "Plugin 'shawncplus/phpcomplete.vim'
 
 "Plugin 'Valloric/YouCompleteMe'      " more functional autocoplete
 
-Plugin 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
+Plug 'kien/ctrlp.vim'              " fuzzysercher in buffers, files and mru
 
 "Plugin 'SirVer/ultisnips'            " snippet engine
 
 "Plugin 'honza/vim-snippets'          " snippets
 
-Plugin 'rust-lang/rust.vim'         " rust
+"Plug 'rust-lang/rust.vim'         " rust
 
-Plugin 'fatih/vim-go'               " golang
+Plug 'fatih/vim-go'               " golang
 
-Plugin 'zah/nim.vim'                " nim
+"Plugin 'zah/nim.vim'                " nim
 
 "----------- other --------------
-Plugin 'scrooloose/syntastic'        " syntax checker
+Plug 'scrooloose/syntastic'        " syntax checker
 
-Plugin 'tpope/vim-fugitive'          " git wrapper
+Plug 'tpope/vim-fugitive'          " git wrapper
 
-Plugin 'airblade/vim-gitgutter'      " show git changes
+Plug 'airblade/vim-gitgutter'      " show git changes
 
-Plugin 'vim-scripts/matchit.zip'      " extended %
+"Plugin 'vim-scripts/matchit.zip'      " extended %
 
-"Plugin 'jiangmiao/auto-pairs'        " auto close brackets
+Plug 'jiangmiao/auto-pairs'        " auto close brackets
 
-call vundle#end()            		" required
+" Add plugins to &runtimepath
+call plug#end()
+
+if exists('s:vimplug_installed') && s:vimplug_installed
+    unlet s:vimplug_installed
+    PlugInstall
+    quit
+endif
 
 filetype on
 filetype plugin on
@@ -68,22 +78,6 @@ filetype plugin indent on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-if has("gui")
-
-  " set the gui options to:
-  "   g: grey inactive menu items
-  "   m: display menu bar
-  "   r: display scrollbar on right side of window
-  "   b: display scrollbar at bottom of window
-
-  "   t: enable tearoff menus on Win32
-  "   T: enable toolbar on Win32
-    set go-=T
-    set go-=L
-    "set guifont=Courier
-
-endif
 
 "au VimEnter * if line('$') > &lines | set go+=r | else | set go-=r | endif
 "au VimResized * if line('$') > &lines | set go+=r | else | set go-=r | endif
