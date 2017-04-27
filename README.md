@@ -4,16 +4,14 @@ mydot
 my vim and other configuraion
 --------
 
-Install configuration (vim for example):
+Prepare dotfiles:
 - sudo apt install stow
-- cd
 - git clone https://github.com/comdvas/mydot.git ~/.dotfiles
+
+Install configuration (vim for example):
 - cd ~/.dotfiles
 - stow vim
 
 To disable configuration (vim for example):
 - cd ~/.dotfiles
 - stow -D vim
-
-Install vim plugins:
-- in vim type: `:PlugInstall`&lt;enter&gt;

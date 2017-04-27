@@ -130,7 +130,7 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new'
 
 export GOPATH=$HOME/dev/golang
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin # for golang
 
 TERM=xterm-256color
 
