@@ -49,7 +49,7 @@ Plug 'honza/vim-snippets'          " snippets
 "Plug 'fatih/vim-go', { 'tag': '*' }   " golang
 
 "----------- other --------------
-Plug 'scrooloose/syntastic', { 'tag': '*' }        " syntax checker
+Plug 'neomake/neomake'        " asynchronous :make
 
 Plug 'powerman/vim-plugin-viewdoc' " documentation viewer
 
@@ -282,17 +282,10 @@ let g:ycm_filetype_blacklist = {
       \}
 
 "========================================
-" syntastic
+" neomake
 "========================================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 2
 
 "========================================
 " ack
