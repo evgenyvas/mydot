@@ -76,7 +76,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    alias ll='ls -la --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -89,7 +88,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-#alias ll='ls -l'
+alias ll='ls -la'
 #alias la='ls -A'
 #alias l='ls -CF'
 
@@ -129,24 +128,21 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 
 alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new'
 
+# for golang
 export GOPATH=$HOME/dev/golang
-export PATH=$PATH:$GOPATH/bin # for golang
+export PATH=$PATH:$GOPATH/bin
 
 TERM=xterm-256color
 
 # Less Colors for Man Pages
-
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
-
 export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold
-
 export LESS_TERMCAP_me=$'\E[0m' # end mode
-
 export LESS_TERMCAP_se=$'\E[0m' # end standout-mode
-
 export LESS_TERMCAP_so=$'\E[38;5;246m' # begin standout-mode - info box
-
 export LESS_TERMCAP_ue=$'\E[0m' # end underline
-
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+
+# mapping keys
+xmodmap $HOME/.xmodmaprc
 
