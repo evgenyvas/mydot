@@ -1,0 +1,7 @@
+[user]
+  name = Name Surname
+  email = email@address.com
+[diff]
+  external = git_diff_wrapper
+[pager]
+  diff =

@@ -20,7 +20,7 @@ endif
 call plug#begin(s:editor_root . '/plugged')
 
 "---------=== Code/project navigation ===-------------
-Plug 'scrooloose/nerdtree', { 'tag': '4.*' }  " Project and file navigation
+Plug 'scrooloose/nerdtree', { 'tag': '*' }  " Project and file navigation
 "Plug 'jistr/vim-nerdtree-tabs'        " Project and file navigation with tabs support
 "Plug 'Shougo/unite.vim'               " Navigation between buffers and files
 Plug 'jeetsukumaran/vim-buffergator'  " easy buffers switch
@@ -31,6 +31,8 @@ Plug 'vim-airline/vim-airline-themes'       " Lean & mean status/tabline for vim
 "Plug 'vimplugin/project.vim'          " projects support
 
 Plug 'scrooloose/nerdcommenter'       " easy comment
+
+Plug 'tpope/vim-ragtag'               " html tags autocomplete
 
 Plug 'majutsushi/tagbar'              " list of methods, classes and variables
 "Plug 'vim-php/tagbar-phpctags.vim'    " ctags php
@@ -53,17 +55,18 @@ Plug 'neomake/neomake'        " asynchronous :make
 
 Plug 'powerman/vim-plugin-viewdoc' " documentation viewer
 
-"Plug 'KabbAmine/zeavim.vim', { 'tag': '*', 'on': [
-            "\   'Zeavim', 'Docset',
-            "\   '<Plug>Zeavim',
-            "\   '<Plug>ZVVisSelection',
-            "\   '<Plug>ZVKeyDocset',
-            "\   '<Plug>ZVMotion'
-            "\ ]}
+Plug 'KabbAmine/zeavim.vim', { 'on': [
+            \   'Zeavim', 'Docset',
+            \   '<Plug>Zeavim',
+            \   '<Plug>ZVVisSelection',
+            \   '<Plug>ZVKeyDocset',
+            \   '<Plug>ZVMotion'
+            \ ]}
 
 Plug 'ervandew/supertab'           " autocomplete by <Tab>
 
 "Plug 'tpope/vim-fugitive'          " git wrapper
+"Plug 'sjl/splice.vim'
 
 Plug 'airblade/vim-gitgutter'      " show git changes
 
@@ -132,9 +135,6 @@ vnoremap < <gv
 " highlights 80 column limit
 set colorcolumn=80
 
-" close tag
-imap ,/ </<C-X><C-O>
-
 " paste on new line
 nmap <leader>p :pu<CR>
 nmap <leader>P :pu!<CR>
@@ -142,8 +142,12 @@ nmap <leader>P :pu!<CR>
 " highlight line with cursor
 set cursorline
 
+" php composer
+set wildignore+=*/.git/*,*/vendor/*
+
 " enable php manual pages for functions by press K
-"autocmd FileType php set keywordprg=pman
+" required install pman: pear install doc.php.net/pman
+autocmd FileType php set keywordprg=pman
 
 " Show “invisible” characters
 set list lcs=tab:▸\ ,trail:·,nbsp:_
@@ -229,6 +233,7 @@ map <F3> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 " открывать в новом табе по <ENTER>
 let NERDTreeMapOpenInTab='<ENTER>'
+let NERDTreeRespectWildIgnore = 0
 
 "========================================
 " Tagbar
