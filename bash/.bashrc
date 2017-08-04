@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -131,8 +131,6 @@ alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmu
 # for golang
 export GOPATH=$HOME/dev/golang
 export PATH=$PATH:$GOPATH/bin
-
-TERM=xterm-256color
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking

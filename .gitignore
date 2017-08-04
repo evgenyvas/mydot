@@ -3,3 +3,4 @@ vim/.vim/plugged
 neovim/.config/nvim/plugged
 neovim/.config/nvim/plugged
 neovim/.config/nvim/autoload
+git/.gitconfig
