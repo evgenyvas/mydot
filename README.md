@@ -27,3 +27,10 @@ https://github.com/lxde/lxterminal
 ./configure --prefix=/usr/local/stow/lxterminal-0.3.0-gtk3 --enable-gtk3 --enable-man
 ```
 
+fonts for debian
+------------------
+
+```
+sudo apt install fonts-hack-ttf ttf-liberation msttcorefonts ttf-dejavu ttf-freefont fonts-cantarell ttf-dejavu ttf-courier-prime texlive-fonts-extra fonts-noto fonts-symbola gsfonts fonts-texgyre fonts-crosextra-caladea fonts-crosextra-carlito
+```
+
