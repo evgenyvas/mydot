@@ -91,6 +91,7 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
+set termguicolors
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
