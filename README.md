@@ -34,3 +34,22 @@ fonts for debian
 sudo apt install fonts-hack-ttf ttf-liberation ttf-mscorefonts-installer ttf-dejavu ttf-freefont fonts-cantarell ttf-dejavu texlive-fonts-extra fonts-noto fonts-symbola gsfonts fonts-texgyre fonts-crosextra-caladea fonts-crosextra-carlito
 ```
 
+clipboard
+------------------
+
+For clipboard support used lemonade and autocutsel.
+
+https://github.com/pocke/lemonade
+
+```
+apt install autocutsel
+cd ~/bin
+wget https://github.com/pocke/lemonade/releases/download/v1.1.1/lemonade_linux_amd64.tar.gz
+tar zxvpf lemonade_linux_amd64.tar.gz
+```
+
+Connect to remote host (you need to install lemonade on remote host too):
+
+```
+remote user@remotehost.com
+```

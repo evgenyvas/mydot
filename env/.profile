@@ -26,3 +26,6 @@ export TERMINAL=/usr/local/bin/lxterminal
 # mapping keys
 xmodmap $HOME/.xmodmaprc
 
+# sync clipboard buffers
+autocutsel -fork
+
