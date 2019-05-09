@@ -48,9 +48,11 @@ Plug 'SirVer/ultisnips', { 'tag': '*' }         " snippet engine
 
 Plug 'honza/vim-snippets'          " snippets
 
-"Plug 'fatih/vim-go', { 'tag': '*' }   " golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }   " golang
 
 "----------- other --------------
+Plug 'sheerun/vim-polyglot'   " A collection of language packs
+
 Plug 'neomake/neomake'        " asynchronous :make
 
 Plug 'powerman/vim-plugin-viewdoc' " documentation viewer
@@ -292,6 +294,9 @@ let g:ycm_filetype_blacklist = {
 "========================================
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
+" python3 in debian
+let g:neomake_python_pep8_exe = 'python3'
+let g:neomake_python_enabled_makers = ['pep8']
 
 "========================================
 " ack

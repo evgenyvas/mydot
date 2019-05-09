@@ -1,7 +1,12 @@
 [user]
   name = Name Surname
   email = email@address.com
+  signingkey = AABBCCDDEEFF
 [diff]
   external = git_diff_wrapper
 [pager]
   diff =
+[gpg]
+  program = gpg2
+[commit]
+  gpgsign = true
