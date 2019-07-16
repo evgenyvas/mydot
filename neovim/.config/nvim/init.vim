@@ -146,7 +146,7 @@ nmap <leader>P :pu!<CR>
 set cursorline
 
 " php composer
-set wildignore+=*/.git/*,*/vendor/*
+set wildignore+=*/.git/*,*/vendor/*,*/node_modules/*
 
 " enable php manual pages for functions by press K
 " required install pman: pear install doc.php.net/pman
