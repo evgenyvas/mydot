@@ -31,7 +31,7 @@ fonts for debian
 ------------------
 
 ```
-sudo apt install fonts-hack-ttf ttf-liberation ttf-mscorefonts-installer ttf-dejavu ttf-freefont fonts-cantarell ttf-dejavu texlive-fonts-extra fonts-noto fonts-symbola gsfonts fonts-texgyre fonts-crosextra-caladea fonts-crosextra-carlito
+sudo apt install fonts-hack-ttf fonts-liberation ttf-mscorefonts-installer ttf-dejavu fonts-freefont-ttf fonts-cantarell ttf-dejavu texlive-fonts-extra fonts-noto fonts-symbola gsfonts fonts-texgyre fonts-crosextra-caladea fonts-crosextra-carlito
 ```
 
 clipboard
