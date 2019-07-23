@@ -1,5 +1,3 @@
-vim/.vim/autoload
-vim/.vim/plugged
-neovim/.config/nvim/plugged
+env/bin/lemonade
 neovim/.config/nvim/plugged
 neovim/.config/nvim/autoload

@@ -1,31 +1,20 @@
 mydot
 =====
 
-my vim and other configuraion
------------------------------
+my configuraion dotfiles
+------------------------
 
 Prepare dotfiles:
 - sudo apt install stow git
-- git clone https://github.com/comdvas/mydot.git ~/.dotfiles
+- git clone https://github.com/evgenyvas/mydot.git ~/.dotfiles
 
-Install configuration (vim for example):
+Install configuration (neovim for example):
 - cd ~/.dotfiles
-- stow vim
+- stow neovim
 
-To disable configuration (vim for example):
+To disable configuration (neovim for example):
 - cd ~/.dotfiles
-- stow -D vim
-
-compile lxterminal
-------------------
-
-For neovim needed lxterminal with gtk3.
-
-https://github.com/lxde/lxterminal
-
-```
-./configure --prefix=/usr/local/stow/lxterminal-0.3.0-gtk3 --enable-gtk3 --enable-man
-```
+- stow -D neovim
 
 fonts for debian
 ------------------
