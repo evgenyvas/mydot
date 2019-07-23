@@ -26,7 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export TERMINAL=/usr/local/bin/lxterminal
+export TERMINAL=/usr/bin/lxterminal
 
 # mapping keys
 xmodmap $HOME/.xmodmaprc
