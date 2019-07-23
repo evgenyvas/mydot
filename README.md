@@ -1,8 +1,8 @@
 mydot
 =====
 
-my configuraion dotfiles
-------------------------
+my configuration dotfiles
+-------------------------
 
 Prepare dotfiles:
 - sudo apt install stow git
