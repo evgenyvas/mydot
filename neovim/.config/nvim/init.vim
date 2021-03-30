@@ -123,7 +123,6 @@ nnoremap * *N
 " в визуальном режиме по команде * подсвечивать выделение
 vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 set switchbuf+=usetab,newtab
-set laststatus=2        " show status bar always
 "------- indentation settings -------
 set tabstop=4
 set softtabstop=4
@@ -151,6 +150,8 @@ set wildignore+=*/.git/*,*/vendor/*,*/node_modules/*
 " enable php manual pages for functions by press K
 " required install pman: pear install doc.php.net/pman
 autocmd FileType php set keywordprg=pman
+
+let PHP_noArrowMatching = 1
 
 " Show “invisible” characters
 set list lcs=tab:▸\ ,trail:·,nbsp:_
@@ -204,8 +205,8 @@ set dictionary="/usr/dict/words"
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-set backupdir=./.backup,/tmp
-set directory=./.backup,/tmp
+set backupdir=/tmp
+set directory=/tmp
 
 " stamp a yanked text to S
 nnoremap S diw"0P
@@ -248,7 +249,7 @@ map <F4> :TagbarToggle<CR>
 "========================================
 " Airline
 "========================================
-set laststatus=2
+set laststatus=2 " show status bar always
 let g:airline_theme='badwolf'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
