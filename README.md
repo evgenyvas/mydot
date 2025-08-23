@@ -62,7 +62,8 @@ install lua and deps for neovim
 -------------------------------
 
 ```
-sudo apt install lua5.4 luarocks fd-find tree-sitter-cli
+sudo apt install lua5.4 luarocks xclip ripgrep exuberant-ctags fd-find tree-sitter-cli python3-pip npm
+sudo pip install --break-system-packages pynvim
 ```
 
 install xkb-switch for neovim layout switch

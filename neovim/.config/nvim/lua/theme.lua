@@ -1,1 +1,1 @@
-require('monokai').setup { italics = false }
+require("monokai").setup { italics = false }
