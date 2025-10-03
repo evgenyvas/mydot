@@ -99,25 +99,22 @@ local on_attach = function(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
--- Setup lspconfig.
-local nvim_lsp = require("lspconfig")
-
--- setup languages 
+-- Setup lspconfig
 
 -- TypeScript
-nvim_lsp["ts_ls"].setup {
+vim.lsp.config("ts_ls", {
   on_attach = on_attach,
   capabilities = capabilities
-}
+})
 
 -- PHP
-nvim_lsp["phpactor"].setup {
+vim.lsp.config("phpactor", {
   on_attach = on_attach,
   capabilities = capabilities
-}
+})
 
 -- GoLang
-nvim_lsp["gopls"].setup {
+vim.lsp.config("gopls", {
   cmd = {"gopls"},
   on_attach = on_attach,
   capabilities = capabilities,
@@ -134,4 +131,4 @@ nvim_lsp["gopls"].setup {
   init_options = {
     usePlaceholders = true
   }
-}
+})
