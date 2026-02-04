@@ -49,6 +49,11 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
       version = "*"
     },
+    { -- task runner
+      "stevearc/overseer.nvim",
+      version = "*",
+      opts = {}
+    },
     { -- smart automatic keyboard layout switching
       "ivanesmantovich/xkbswitch.nvim"
     },

@@ -128,10 +128,6 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 
 alias tmux='TERM=screen-256color-bce tmux attach || TERM=screen-256color-bce tmux new'
 
-# for golang
-export GOPATH=$HOME/dev/golang
-export PATH=$PATH:$GOPATH/bin
-
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold

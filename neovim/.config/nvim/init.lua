@@ -99,6 +99,7 @@ require("treesitter") -- set up before LSP for better highlighting
 require("lsp") -- depends on language servers being available
 require("completion") -- depends on LSP configuration
 require("searching") -- often integrates with LSP
+require("compiler") -- building and running tasks
 require("layout") -- keyboard layout switching setup
 
 -- ui plugins last
