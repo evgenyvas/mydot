@@ -115,9 +115,10 @@ vim.lsp.config("phpactor", {
 
 -- GoLang
 vim.lsp.config("gopls", {
-  cmd = {"gopls"},
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = {"gopls"},
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
   settings = {
     gopls = {
       experimentalPostfixCompletions = true,

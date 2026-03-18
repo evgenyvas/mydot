@@ -11,9 +11,11 @@ return {
       -- add some components that will pipe the output to quickfix,
       -- parse it using errorformat, and display any matching lines as diagnostics.
       components = {
-        { "on_output_quickfix", set_diagnostics = true, open = true },
-        "on_result_diagnostics",
         "default",
+        "unique",
+        { "on_output_quickfix", set_diagnostics = true, open = true },
+        { "on_result_diagnostics", remove_on_restart = true },
+        { "on_result_diagnostics_quickfix", set_empty_results = true },
       },
     }
   end,
