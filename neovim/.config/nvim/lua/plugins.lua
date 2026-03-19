@@ -67,6 +67,11 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" }
     },
+    { -- format
+      "stevearc/conform.nvim",
+      version = "*",
+      opts = {},
+    },
     { -- list of methods, classes and variables
       "preservim/tagbar"
     },

@@ -106,6 +106,7 @@ require("layout") -- keyboard layout switching setup
 -- ui plugins last
 require("theme")
 require("statusline")
+require("format")
 require("tagbar")
 require("filemanager")
 require("tabs")
